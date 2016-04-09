@@ -1,0 +1,64 @@
+<h1>{{info}}</h1>
+
+<div *ngIf="error" style="color:red">
+  {{ error }}
+</div>
+
+<div *ngIf="message">
+    {{ message }}
+</div>
+
+<form #f="ngForm">
+
+    <div class="form-group">
+        <label>Id</label>
+        <input [(ngModel)]="flug.id" class="form-control" >
+    </div>
+
+    <div class="form-group">
+        <label>Datum</label>
+        <input [(ngModel)]="flug.datum" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Abflugort</label>
+        <input
+            [(ngModel)]="flug.abflugort"
+            class="form-control"
+            ngControl="abflugort"
+            required
+            minlength="3"
+            maxlength="30">
+
+        <div *ngIf="!f?.controls?.abflugort?.valid">
+            Fehler!
+        </div>
+        <div *ngIf="f?.controls?.abflugort?.hasError('required')">
+            Pflichtfeld!
+        </div>
+        <div *ngIf="f?.controls?.abflugort?.hasError('minlength')">
+            Zu Kurz!
+        </div>
+        <div *ngIf="f?.controls?.abflugort?.hasError('maxlength')">
+            Zu Lang!
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label>Zielort</label>
+        <input [(ngModel)]="flug.zielort" class="form-control">
+    </div>
+
+
+    <div class="form-group">
+        <input
+                type="button"
+                class="btn btn-default"
+                value="Speichern!"
+                (click)="save()"
+                [disabled]="!f.valid"
+                >
+    </div>
+
+</form>

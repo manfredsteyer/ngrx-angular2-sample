@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Angular 2 QuickStart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <style>
+
+        .ng-invalid {
+            border-left-color: darkred;
+            border-left-width: 5px;
+        }
+
+        .ng-valid {
+            border-left-color: green;
+            border-left-width: 5px;
+        }
+
+    </style>
+
+    <!--
+        <base href="angular2-steyer">
+    -->
+
+    <!-- http://localhost:8080/angular2-starter/x/y/z -->
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
+
+
+    <!-- 2. Configure SystemJS -->
+    <script>
+        System.config({
+            packages: {
+                app: {
+                    format: 'register', // System.register
+                    defaultExtension: 'js' // .js
+                },
+                '@ngrx/store': {
+                    main: 'index.js',
+                    format: 'cjs'           
+                }      
+            },
+            map: { 
+                '@ngrx/store' : 'node_modules/@ngrx/store/dist', 
+                'immutable': 'node_modules/immutable/dist/immutable.js'
+            }
+        });
+        System.import('app/main')
+                .then(null, console.error.bind(console));
+    </script>
+</head>
+
+<!-- 3. Display the application -->
+<body>
+
+    <my-app>Loading...</my-app>
+
+</body>
+</html>

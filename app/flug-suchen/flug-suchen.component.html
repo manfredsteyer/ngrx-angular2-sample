@@ -1,0 +1,62 @@
+<h1>Flug suchen!</h1>
+
+<form>
+    <div class="form-group">
+        <label>Von</label>
+        <input class="form-control" [(ngModel)]="von">
+    </div>
+    <div class="form-group">
+        <label>Nach</label>
+        <input class="form-control" [(ngModel)]="nach">
+    </div>
+    <div class="form-group">
+        <input
+                type="button"
+                class="btn btn-default"
+                value="Suchen!"
+                (click)="suchen()">
+    </div>
+
+</form>
+
+<div *ngFor="#flug of fluege" class="col-sm-4">
+
+    <flug-card
+            [item]="flug"
+            [(selectedItem)]="selectedFlug">
+
+        <a class="btn btn-default" [routerLink]="['../FlugEdit', { id: flug.id } ]">Editieren</a>
+
+    </flug-card>
+
+
+    <!--
+                [selectedItem]="selectedFlug"
+            (selectedItemChange)="selectedFlug = $event">
+
+    -->
+</div>
+
+<pre *ngIf="selectedFlug">
+    {{ selectedFlug | json }}
+</pre>
+
+<!--
+<table class="table table-striped" [hidden]="fluege.length == 0">
+
+    <tr *ngFor="#flug of fluege"
+        [class.active]="flug.id == selectedFlug?.id">
+        <td>{{flug.id}}</td>
+        <td>{{flug.datum.substr(0,10)}}</td>
+        <td>{{flug.abflugort | ort:'short'}}</td>
+        <td>{{flug.zielort | ort:'long' }}</td>
+        <td>
+            <a style="cursor: hand" href="javascript:void(0)" (click)="select(flug)">Auswählen</a>
+            |
+
+
+        </td>
+    </tr>
+
+</table>
+-->
